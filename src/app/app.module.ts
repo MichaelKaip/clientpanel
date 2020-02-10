@@ -12,6 +12,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ClientDetailsComponent } from './components/client-details/client-details.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     LoginComponent,
     RegisterComponent,
     SettingsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ClientDetailsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
