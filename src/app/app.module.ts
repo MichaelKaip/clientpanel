@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';  
 import { RouterModule } from '@angular/router';
+import{ FormsModule } from '@angular/forms'
+
 
 import { AngularFireModule } from 'angularfire2'
 import { AngularFirestoreModule } from 'angularfire2/firestore'
@@ -39,6 +42,8 @@ import { environment } from 'src/environments/environment';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
     RouterModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'ClientPanel'),
