@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';  
 import { RouterModule } from '@angular/router';
 import{ FormsModule } from '@angular/forms'
+import { FlashMessagesModule } from 'angular2-flash-messages'
 
 
 import { AngularFireModule } from 'angularfire2'
@@ -44,6 +45,7 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     CommonModule,
     FormsModule,
+    FlashMessagesModule.forRoot(),
     RouterModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'ClientPanel'),
