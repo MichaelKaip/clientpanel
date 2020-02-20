@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Client } from '../models/Client';
@@ -8,13 +8,14 @@ import { Client } from '../models/Client';
   providedIn: 'root'
 })
 export class ClientService {
-  clientsCollection: AngularFirestoreCollection<Client>;
-  clientDoc;
-  clients: Observable<Client[]>;
-  client: Observable<Client>;
+  
+  clientsCollection: AngularFirestoreCollection<Client>
+  clientDoc: AngularFirestoreDocument<Client>
+  clients: Observable<Client[]>
+  client: Observable<Client>
  
   constructor(private afs: AngularFirestore) { 
-    this.clientsCollection = this.afs.collection<Client>('Clients');
+    this.clientsCollection = this.afs.collection<Client>('Clients')
     console.log(this.clientsCollection)
   }
  
@@ -22,9 +23,9 @@ export class ClientService {
     // Get clients with the id
     this.clients = this.clientsCollection.snapshotChanges().pipe(map(changes => {
       return changes.map(action => {
-        const data = action.payload.doc.data() as Client;
-        data.id = action.payload.doc.id;
-        return data;
+        const data = action.payload.doc.data() as Client
+        data.id = action.payload.doc.id
+        return data
       });
     }));
  
@@ -33,5 +34,19 @@ export class ClientService {
 
   newClient(client: Client) {
     this.clientsCollection.add(client)
+  }
+
+  getClient(id: string): Observable<Client> {
+    this.clientDoc = this.afs.doc<Client>('Clients/' + id)
+    this.client = this.clientDoc.snapshotChanges().pipe(map(action => {
+      if(action.payload.exists === false) {
+        return null
+      } else {
+        const data = action.payload.data() as Client;
+        data.id = action.payload.id;
+        return data
+      }
+    }));
+    return this.client
   }
 }
