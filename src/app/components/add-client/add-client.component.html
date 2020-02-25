@@ -17,7 +17,7 @@
     <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
       <div class="form-group">
         <label for="firstName">First Name</label>
-        <input 
+        <input
           type="text"
           class="form-control"
           name="firstName"
@@ -37,13 +37,13 @@
 
       <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input 
+        <input
           type="text"
           class="form-control"
           name="lastName"
           #clientLastName="ngModel"
           [ngClass]="{'is-invalid':clientLastName.errors && clientLastName.touched}"
-          [(ngModel)]="clientlastName"
+          [(ngModel)]="client.lastName"
           minlength="2"
           required
         >
@@ -57,7 +57,7 @@
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input 
+        <input
           type="text"
           class="form-control"
           name="email"
@@ -77,7 +77,7 @@
 
       <div class="form-group">
         <label for="phone">Phone</label>
-        <input 
+        <input
           type="text"
           class="form-control"
           name="phone"
@@ -97,7 +97,7 @@
 
       <div class="form-group">
         <label for="balance">Balance</label>
-        <input 
+        <input
           type="text"
           class="form-control"
           name="balance"
